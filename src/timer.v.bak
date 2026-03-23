@@ -1,0 +1,36 @@
+module timer(
+
+    input wire clk,
+    input wire enable,
+    output reg done
+
+);
+
+parameter COUNT_MAX = 20;
+
+reg [31:0] counter = 0;
+
+always @(posedge clk)
+begin
+
+    if(enable == 0)
+    begin
+        counter <= 0;
+        done <= 0;
+    end
+    else
+    begin
+        if(counter < COUNT_MAX)
+        begin
+            counter <= counter + 1;
+            done <= 0;
+        end
+        else
+        begin
+            done <= 1;
+        end
+    end
+
+end
+
+endmodule
